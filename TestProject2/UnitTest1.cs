@@ -24,38 +24,30 @@ public class ProgramTests
     [TestMethod]
     public void ExamGrading_Positive()
     {
-        // Arrange
-        string[] input = { "8", "45", "25", "9" }; // Ввод корректных баллов для каждого задания
-
-        // Act
+        string[] input = { "8", "45", "25", "9" }; 
         using (StringReader sr = new StringReader(string.Join(Environment.NewLine, input)))
         {
             Console.SetIn(sr);
             Program.ExamGrading();
         }
-
-        // Assert
         string actualOutput = _consoleOutput.ToString().Trim();
-        Assert.IsTrue(actualOutput.Contains("Сумма набранных баллов: 87"));
-        Assert.IsTrue(actualOutput.Contains("Оценка: 5 (Отлично)"));
+        Assert.IsTrue(actualOutput.Contains("РЎСѓРјРјР° РЅР°Р±СЂР°РЅРЅС‹С… Р±Р°Р»Р»РѕРІ: 87"));
+        Assert.IsTrue(actualOutput.Contains("РћС†РµРЅРєР°: 5 (РћС‚Р»РёС‡РЅРѕ)"));
     }
 
     [TestMethod]
     public void ExamGrading_Negative()
     {
-        // Arrange
-        string[] input = { "-5", "55", "35", "12" }; // Ввод некорректных баллов для каждого задания
+        string[] input = { "-5", "55", "35", "12" };
 
-        // Act
         using (StringReader sr = new StringReader(string.Join(Environment.NewLine, input)))
         {
             Console.SetIn(sr);
             Program.ExamGrading();
         }
 
-        // Assert
         string actualOutput = _consoleOutput.ToString().Trim();
-        Assert.IsTrue(actualOutput.Contains("Сумма набранных баллов: 0"));
-        Assert.IsTrue(actualOutput.Contains("Оценка: Некорректная сумма баллов"));
+        Assert.IsTrue(actualOutput.Contains("РЎСѓРјРјР° РЅР°Р±СЂР°РЅРЅС‹С… Р±Р°Р»Р»РѕРІ: 0"));
+        Assert.IsTrue(actualOutput.Contains("РћС†РµРЅРєР°: РќРµРєРѕСЂСЂРµРєС‚РЅР°СЏ СЃСѓРјРјР° Р±Р°Р»Р»РѕРІ"));
     }
 }
